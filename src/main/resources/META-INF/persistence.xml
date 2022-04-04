@@ -5,6 +5,7 @@
     <class>egg.web.libreria.entidades.Autor</class>
     <class>egg.web.libreria.entidades.Editorial</class>
     <class>egg.web.libreria.entidades.Libro</class>
+    <class>egg.web.libreria.entidades.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/libreria?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

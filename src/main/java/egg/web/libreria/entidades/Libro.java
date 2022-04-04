@@ -18,8 +18,9 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 public class Libro implements Serializable {
+    
     @Id
-     @GeneratedValue(generator = "uuid")
+    @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private Long isbn;
