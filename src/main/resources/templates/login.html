@@ -14,40 +14,91 @@ and open the template in the editor.
         <link rel="stylesheet" href="/css/style.css"/>
     </head>
     <body>
-        <div class="text-center">
-            <h1 class="h1 animate__heartBeat">biblioteca</h1>
-        </div>
-        <div class="row caja">
+        <header>
+            <div class="text-center">
+                <h1 class="h1 animate__heartBeat">biblioteca virtual</h1>
+            </div>
+        </header>
 
-            <div class="col-sm-9 cajaIzq"></div>
-            <div class="col-sm-3 cajaDer">
+
+        <div class="navbar navbar-expand-sm navbar-dark menu p-5 my-5">
+            <div class="container-fluid">
                 <form th:action="@{/logincheck}" method="POST" class="needs-validation">
                     <div class="row">
-                            
-
                         <div class="mb-3 mt-3">
                             <p th:if="${error != null}" style="color:red;" th:text="${error}"></p>
                             <label for="username" class="form-label">Nombre de Usuario:</label>
-                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="username">
+                            <input type="text" class="form-control" id="email" name="username">
                         </div>
                         <div class="mb-3">
                             <label for="pwd" class="form-label">Contraseña:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-                             <div class="form-check boton">
-                            <button type="submit" class="btn btn-outline-light text-dark">Ingresar</button>
+                            <input type="password" class="form-control" id="pwd" name="password">
+                            <div class="form-check boton">
+                                <button type="submit" class="btn btn-outline-light">Ingresar</button>
+                            </div>
                         </div>
-                        </div>
-                       
                     </div>
-                </form>
-
+                    <div class="row">
                 <form th:action="@{/Usuario}">
-                    <div class="form-check boton">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <p>no tenes cuenta?</p>
-                        <button type="submit" class="btn btn-outline-light text-dark">Registrarse</button>
+                        <button type="submit" class="btn btn-outline-light">Registrarse</button>
                     </div>
                 </form>
-            </div> 
+            </div>
+                </form>
+                
+            </div>
         </div>
+
+
+       
+
+
+        
+        
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>About</h6>
+                        <p class="text-justify">Este proyecto fue echo por <i>Roxania Gomez</i> como una herramienta para de aprendizaje, y sobre todo con el objetivo de dar a conocer mis habilidades en el campo de la programacion. </p>
+                    </div>
+
+                    <div class="col-xs-12 col-md-3">
+                        <h6>Conocimientos en:</h6>
+                        <ul class="footer-links">
+                            <li>java</li>
+                            <li>Boostrap</li>
+                            <li>Spring</li>
+                            <li>css3</li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; 2022 Todos los derechos recervados a:
+                            <a href="#">Roxania Gomez</a>.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="linkedin" href="#"><i class="fa fa-linkedin">in</i></a></li>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter">B</i></a></li>
+                            <li><a class="dribbble" href="#"><i class="fa fa-dribbble">msn</i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
     </body>
 </html>

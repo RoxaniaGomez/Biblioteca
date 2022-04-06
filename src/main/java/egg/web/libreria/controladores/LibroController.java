@@ -8,6 +8,10 @@ package egg.web.libreria.controladores;
 
 import egg.web.libreria.entidades.Libro;
 import egg.web.libreria.servicios.LibroServicio;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -41,11 +46,18 @@ public class LibroController {
 	return "libro";
     }
     @PostMapping("/save")
-    public String formularioData(@RequestParam("titulo") String titulo, @RequestParam("id") String id, Model modelo) {
+    public String formularioData(@RequestParam("titulo") String titulo, @RequestParam("id") String id, Model modelo, @RequestParam("archivo") MultipartFile archivo) {
 	Libro libro = new Libro();
 	try {
+            
 	    libro.setTitulo(titulo);
-           if(id!=null && !id.isEmpty()){
+            try {
+                byte[] bytes =archivo.getBytes();
+            Files.write(Paths.get("C:\\Users\\groxa\\Documents\\NetBeansProjects\\libreria2\\UpLoads\\"+archivo.getOriginalFilename()), bytes,StandardOpenOption.CREATE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if(id!=null && !id.isEmpty()){
            libro.setId(id);
            } 
             libro.setAlta(true);
