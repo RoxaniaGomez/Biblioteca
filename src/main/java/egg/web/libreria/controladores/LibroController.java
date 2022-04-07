@@ -6,7 +6,9 @@
 package egg.web.libreria.controladores;
 
 
+import egg.web.libreria.entidades.Foto;
 import egg.web.libreria.entidades.Libro;
+import egg.web.libreria.servicios.FotoServicio;
 import egg.web.libreria.servicios.LibroServicio;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
@@ -26,9 +28,13 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * @author groxa
  */
+
+
 @Controller
 @RequestMapping("/libro")
 public class LibroController {
+    @Autowired
+    private FotoServicio fotoServicio;
     
     @Autowired
     private LibroServicio libroServicio;
@@ -48,19 +54,19 @@ public class LibroController {
     @PostMapping("/save")
     public String formularioData(@RequestParam("titulo") String titulo, @RequestParam("id") String id, Model modelo, @RequestParam("archivo") MultipartFile archivo) {
 	Libro libro = new Libro();
+        
 	try {
-            
-	    libro.setTitulo(titulo);
-            try {
-                byte[] bytes =archivo.getBytes();
-            Files.write(Paths.get("C:\\Users\\groxa\\Documents\\NetBeansProjects\\libreria2\\UpLoads\\"+archivo.getOriginalFilename()), bytes,StandardOpenOption.CREATE);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (archivo!= null){
+            Foto foto = fotoServicio.guardar(archivo);
+            libro.setImg(foto);
             }
+	    libro.setTitulo(titulo);
+            
             if(id!=null && !id.isEmpty()){
            libro.setId(id);
            } 
             libro.setAlta(true);
+            
 	    libroServicio.guardarLibro(libro);
 	    modelo.addAttribute("libro", libro);
 	    return "libro";
